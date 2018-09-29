@@ -81,6 +81,8 @@ wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/ar
 (./install_netcdf4.bash 2>&1) | tee install_netcdf4.log
 ```
 
+If anything goes wrong in this step you can check the `install_netcdf4.log` log file.
+
 #### 4.2. Create your custom 'arch.make' file for GCC + MPI build 
 
 First create a custom target arch directory:
