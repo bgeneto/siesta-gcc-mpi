@@ -2,7 +2,7 @@ Instructions to install Siesta 4.1-b3 with gnu compilers and openmpi in Linux (t
 ------------------------------------------------------------------------------------------
 
 
-1. Install prerequisites like gfortran, mpi and openblas:
+## Install prerequisites like gfortran, mpi and openblas:
 
 $ sudo apt install make g++ gfortran openmpi-common openmpi-bin libopenmpi-dev \
     libblacs-mpi-dev libnetcdf-dev netcdf-bin libnetcdff-dev libscalapack-mpi-dev \
