@@ -10,54 +10,51 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
 ```
 
 ## Create siesta install directory
+
+**Note:** In what follows, we assume that your user has write permission to the siesta install directory (that's why we use chown/chmod below) and its in sudoers file!
+
 ```
-mkdir $HOME/siesta && cd $HOME/siesta
+SIESTA_DIR=/opt/siesta
+sudo mkdir $SIESTA_DIR
+sudo chown -R root:sudo $SIESTA_DIR
+sudo chmod -R 775 $SIESTA_DIR
 ```
 
 ## Download and extract siesta from sources
 
 ```
+cd $SIESTA_DIR
 wget https://launchpad.net/siesta/4.1/4.1-b3/+download/siesta-4.1-b3.tar.gz
 tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
 ```
+
 ## Install siesta library dependencies
+
+First let's `make` runs in parallel by default 
+
+```
+alias make='make -j'
+```
+
+Now download and install flook:
+
 ```
 cd ./siesta-4.1-b3/Docs
 wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.0/flook-0.7.0.tar.gz
-./install_flook.bash
+(./install_flook.bash 2>&1) | tee install_flook.log
 ```
-6. Take note of arch.make settings
 
-After successfull compilation, take note of the following lines (for example):
-Please add the following to the BOTTOM of your arch.make file
+Install netcdf dependency:
 
-INCFLAGS += -I/opt/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/include
-LDFLAGS += -L/opt/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib -Wl,-rpath=/opt/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib
-LIBS += -lflookall -ldl
-COMP_LIBS += libfdict.a
-FPPFLAGS += -DSIESTA__FLOOK
+```
+wget https://zlib.net/zlib-1.2.11.tar.gz
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.bz2
+wget -O netcdf-c-4.4.1.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.4.1.1.tar.gz
+wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/archive/v4.4.4.tar.gz
+(./install_netcdf4.bash 2>&1) | tee install_netcdf4.log
+```
 
-7. Install netcdf dependency:
-
-$ sudo wget https://zlib.net/zlib-1.2.11.tar.gz
-  sudo wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.bz2
-  sudo wget -O netcdf-c-4.4.1.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.4.1.1.tar.gz
-  sudo wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/archive/v4.4.4.tar.gz
-  sudo ./install_netcdf4.bash
-
-8. Take note of arch.make settings again:
-
-After successfull build it outputs lines like this:
-
-INCFLAGS += -I/opt/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/include
-LDFLAGS += -L/opt/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib -Wl,-rpath=/opt/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib
-LDFLAGS += -L/opt/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib -Wl,-rpath=/opt/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib
-LDFLAGS += -L/opt/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib -Wl,-rpath=/opt/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib
-LIBS += -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz
-COMP_LIBS += libncdf.a libfdict.a
-FPPFLAGS += -DCDF -DNCDF -DNCDF_4
-
-9. Install single-threaded optimized openblas library from sources:
+## Install single-threaded optimized openblas library from sources:
 (note that apt installs threaded version by default, not suitable to MPI)
 
 $ sudo mkdir -p /opt/openblas && cd /opt/openblas
