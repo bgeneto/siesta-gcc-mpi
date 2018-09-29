@@ -108,3 +108,31 @@ make OBJDIR=ObjMPI
 sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
+
+## 6. Test siesta
+
+Let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
+
+```
+mkdir $HOME/siesta
+cp -r $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests
+```
+
+Now create a symbolic link to siesta executable 
+
+```
+cd $HOME/siesta
+ln -s $SIESTA_DIR/siesta-4.1-b3/ObjMPI/siesta
+```
+
+Finally run some test job:
+
+```
+cd $HOME/siesta/Tests/h2o_dos/
+make
+```
+
+We should see the following message:
+```
+===> SIESTA finished successfully
+```
