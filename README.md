@@ -9,15 +9,18 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
   libopenmpi-dev libblacs-mpi-dev libreadline-dev -y
 ```
 
-## Create siesta install directory
+## Create required folders
 
-*Note: In what follows, we assume that your user has write permission to the siesta install directory (that's why we use chown/chmod below) and its in sudoers file!*
+*Note: In what follows, we assume that your user has write permission to the following install directories (that's why we use chown/chmod below). Additionaly, your user must be in the sudoers file.*
 
 ```
 SIESTA_DIR=/opt/siesta
-sudo mkdir $SIESTA_DIR
-sudo chown -R root:sudo $SIESTA_DIR
-sudo chmod -R 775 $SIESTA_DIR
+OPENBLAS_DIR=/opt/openblas
+SCALAPACK_DIR=/opt/scalapack 
+
+sudo mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo chown -R root:sudo $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo chmod -R 775 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
 
 ## Download and extract siesta from sources
@@ -58,36 +61,30 @@ wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/ar
 
 *Note: apt installs a threaded version of openblas by default, I think this is not suitable for this MPI build of siesta.*
 
-$ sudo mkdir -p /opt/openblas && cd /opt/openblas
-$ sudo wget -O OpenBLAS.tar.gz https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/OpenBLAS%200.3.3%20version.tar.gz
-$ sudo tar xzf OpenBLAS.tar.gz
-$ sudo rm OpenBLAS.tar.gz
-$ cd "$(find . -name xianyi-OpenBLAS*)"
-
-Now build the single threaded library:
-
-$ sudo make -j DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 \
+```
+cd /opt/openblas
+wget -O OpenBLAS.tar.gz https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/OpenBLAS%200.3.3%20version.tar.gz
+tar xzf OpenBLAS.tar.gz && rm OpenBLAS.tar.gz
+cd "$(find . -name xianyi-OpenBLAS*)"
+make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 \
   NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0
+make PREFIX=/opt/openblas install  
+```
 
-$ sudo make PREFIX=/opt/openblas install
-
-Check if your LD_LIBRARY_PATH is set correctly (e.g. in /etc/bash.bashrc):
-
-\# use our custom single-threaded openblas
-export INCLUDE_PATH=/opt/openblas/include:$INCLUDE_PATH
-export LD_LIBRARY_PATH=/opt/openblas/lib:$LD_LIBRARY_PATH
-export LIBRARY_PATH=/opt/openblas/lib:$LIBRARY_PATH
-
-10. Copy your custom arch.make
+## Create your custom 'arch.make' file for GCC + MPI build 
 
 First create a custom target arch directory:
 
-$ sudo mkdir /opt/siesta/siesta-4.1-b3/ObjMPI && cd /opt/siesta/siesta-4.1-b3/ObjMPI
-$ wget github file
+```
+mkdir $SIESTA_DIR/siesta-4.1-b3/ObjMPI && cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
+wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta4.1-gnu-openmpi/master/gnu-openmpi-arch.make
+```
 
-11. Finally build siesta
+## Finally build siesta executable 
 
-$ cd /opt/siesta/siesta-4.1-b3/ObjMPI
-$ sudo sh ../Src/obj_setup.sh
-$ sudo make OBJDIR=ObjMPI
+```
+cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
+sh ../Src/obj_setup.sh
+make OBJDIR=ObjMPI
+```
 
