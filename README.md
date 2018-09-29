@@ -1,8 +1,8 @@
 ## 0. Purpose 
 
-This document contains step-by-step instructions to proceed with a successfull installation of the SIESTA (Spanish Initiative for Electronic Simulations with Thousands of Atoms) software on Linux (tested with Ubuntu 18.04) using the GCC and OpenMPI tools. 
+This document contains step-by-step instructions to proceed with a successful installation of the SIESTA (Spanish Initiative for Electronic Simulations with Thousands of Atoms) software on Linux (tested with Ubuntu 18.04) using the GCC and OpenMPI tools. 
 
-## 1. Install prerequisite softwares
+## 1. Install prerequisite software
 
 ```
 sudo apt install make g++ gfortran openmpi-common openmpi-bin \
@@ -11,7 +11,7 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
 
 ## 2. Create required installation folders
 
-*Note: In what follows, we assume that your user has write permission to the following install directories (that's why we use chown/chmod below). Additionaly, your user must be in the sudoers file.*
+*Note: In what follows, we assume that your user has write permission to the following install directories (that's why we use chown/chmod below). Additionally, your user must be in the sudoers file.*
 
 ```
 SIESTA_DIR=/opt/siesta
@@ -25,7 +25,7 @@ sudo chmod -R 775 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 
 ## 3. Install prerequisite libraries 
 
-First let's `make` runs in parallel by default to speed-up things a little... 
+First, let's `make` runs in parallel by default to speed-up things a little... 
 
 ```
 alias make='make -j'
