@@ -1,5 +1,4 @@
-# siesta-gnu-mpi
-Instructions to install Siesta 4.1-b3 with gnu compilers and openmpi in Linux Ubuntu 18.04
+Instructions to install Siesta 4.1-b3 with gnu compilers and openmpi in Linux (tested on Ubuntu 18.04)
 ------------------------------------------------------------------------------------------
 
 
