@@ -9,12 +9,6 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
   libopenmpi-dev libblacs-mpi-dev libreadline-dev -y
 ```
 
-Or, if you use OpenSUSE: 
-
-```
-sudo zypper install gcc-c++ gcc-fortran
-```
-
 ## 2. Create required installation folders
 
 *Note: In what follows, we assume that your user has write permission to the following install directories (that's why we use chown/chmod below). Additionaly, your user must be in the sudoers file.*
