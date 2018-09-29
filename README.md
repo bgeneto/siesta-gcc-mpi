@@ -1,12 +1,14 @@
-Instructions to install Siesta 4.1-b3 with gnu compilers and openmpi in Linux (tested on Ubuntu 18.04)
-------------------------------------------------------------------------------------------
+# Purpose 
 
+This document contains step-by-step instructions to proceed with a successfull installation of the SIESTA (Spanish Initiative for Electronic Simulations with Thousands of Atoms) software on Linux (tested with Ubuntu 18.04) using the GCC and OpenMPI tools. 
 
-## Install prerequisites like gfortran, mpi and openblas:
+## Install prerequisite softwares
 
-$ sudo apt install make g++ gfortran openmpi-common openmpi-bin libopenmpi-dev \
-    libblacs-mpi-dev libnetcdf-dev netcdf-bin libnetcdff-dev libscalapack-mpi-dev \
-    libblas-dev liblapack-dev liblapacke-dev libopenblas-* bc at task-spooler -y
+```
+sudo apt install make g++ gfortran openmpi-common openmpi-bin libopenmpi-dev \
+  libblacs-mpi-dev libnetcdf-dev netcdf-bin libnetcdff-dev libscalapack-mpi-dev \
+  libblas-dev liblapack-dev liblapacke-dev libopenblas-* bc at task-spooler -y
+```
 
 2. Create install directory
 
