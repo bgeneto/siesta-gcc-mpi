@@ -102,6 +102,8 @@ make OBJDIR=ObjMPI
 
 ## 5. Revert to default directory ownership and permission 
 
+Just in case...
+
 ```
 sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
