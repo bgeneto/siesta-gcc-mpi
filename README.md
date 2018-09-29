@@ -25,11 +25,7 @@ sudo chmod -R 775 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 
 ## 3. Install prerequisite libraries 
 
-First, let's `make` runs in parallel by default to speed-up things a little... 
-
-```
-alias make='make -j'
-```
+In order to run siesta in parallel using MPI you need non-threaded blas and lapack libraries along with a standard scalapack library.
 
 #### 3.1. Install single-threaded openblas library from source
 
