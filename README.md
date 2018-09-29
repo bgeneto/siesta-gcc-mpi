@@ -5,29 +5,27 @@ This document contains step-by-step instructions to proceed with a successfull i
 ## Install prerequisite softwares
 
 ```
-sudo apt install make g++ gfortran openmpi-common openmpi-bin libopenmpi-dev libblacs-mpi-dev -y
+sudo apt install make g++ gfortran openmpi-common openmpi-bin \
+  libopenmpi-dev libblacs-mpi-dev libreadline-dev -y
 ```
 
-2. Create install directory
+## Create siesta install directory
+```
+mkdir $HOME/siesta && cd $HOME/siesta
+```
 
-$ sudo mkdir -p /opt/siesta && cd /opt/siesta
+## Download and extract siesta from sources
 
-3. Download siesta 4.1-b3
-
-$ sudo wget https://launchpad.net/siesta/4.1/4.1-b3/+download/siesta-4.1-b3.tar.gz
-
-4. Extract siesta-4.1-b3.tar.gz
-
-$ sudo tar xzf ./siesta-4.1-b3.tar.gz
-  sudo rm ./siesta-4.1-b3.tar.gz
-
-5. Install flook dependencys:
-
-$ cd ./siesta-4.1-b3/Docs
-  sudo wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.0/flook-0.7.0.tar.gz
-  sudo apt-get install libreadline-dev -y
-  sudo ./install_flook.bash
-
+```
+wget https://launchpad.net/siesta/4.1/4.1-b3/+download/siesta-4.1-b3.tar.gz
+tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
+```
+## Install siesta library dependencies
+```
+cd ./siesta-4.1-b3/Docs
+wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.0/flook-0.7.0.tar.gz
+./install_flook.bash
+```
 6. Take note of arch.make settings
 
 After successfull compilation, take note of the following lines (for example):
