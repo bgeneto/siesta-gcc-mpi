@@ -103,9 +103,10 @@ sh ../Src/obj_setup.sh
 make OBJDIR=ObjMPI
 ```
 
-## 5. Revert to default directory ownership 
+## 5. Revert to default directory ownership and permission 
 
 ```
 sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
 
