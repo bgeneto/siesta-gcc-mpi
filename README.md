@@ -1,10 +1,6 @@
 # siesta-gnu-mpi
 Instructions to install Siesta 4.1-b3 with gnu compilers and openmpi in Linux Ubuntu 18.04
-
-===================================================
-Siesta install on a system without Intel compilers
-(only gnu gcc and gfortran with MPI)
-===================================================
+------------------------------------------------------------------------------------------
 
 
 1. Install prerequisites like gfortran, mpi and openblas:
@@ -82,7 +78,7 @@ $ sudo make PREFIX=/opt/openblas install
 
 Check if your LD_LIBRARY_PATH is set correctly (e.g. in /etc/bash.bashrc):
 
-# use our custom single-threaded openblas
+\# use our custom single-threaded openblas
 export INCLUDE_PATH=/opt/openblas/include:$INCLUDE_PATH
 export LD_LIBRARY_PATH=/opt/openblas/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=/opt/openblas/lib:$LIBRARY_PATH
