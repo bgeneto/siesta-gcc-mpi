@@ -108,7 +108,9 @@ Just in case...
 
 ```
 sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo find $SIESTA_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
+sudo find $OPENBLAS_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
+sudo find $SCALAPACK_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
 ```
 
 ## 6. Test siesta
