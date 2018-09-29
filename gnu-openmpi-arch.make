@@ -1,5 +1,5 @@
 #
-# Copyright (C) 1996-2016		The SIESTA group
+# Copyright (C) 1996-2016 The SIESTA group
 #  This file is distributed under the terms of the
 #  GNU General Public License: see COPYING in the top directory
 #  or http://www.gnu.org/copyleft/gpl.txt.
@@ -8,7 +8,7 @@
 #-------------------------------------------------------------------
 # arch.make file for gfortran compiler.
 # To use this arch.make file you should rename it to
-#	arch.make
+# arch.make
 # or make a sym-link.
 # For an explanation of the flags see DOCUMENTED-TEMPLATE.make
 
@@ -73,21 +73,20 @@ LIBS += -L/opt/scalapack/lib -lscalapack
 
 # Dependency rules ---------
 
-FFLAGS_DEBUG = -g -O1	# your appropriate flags here...
+FFLAGS_DEBUG = -g -O1
 
 # The atom.f code is very vulnerable. Particularly the Intel compiler
 # will make an erroneous compilation of atom.f with high optimization
 # levels.
 atom.o: atom.F
 	$(FC) -c $(FFLAGS_DEBUG) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
-
 .c.o:
 	$(CC) -c $(CFLAGS) $(INCFLAGS) $(CPPFLAGS) $<
 .F.o:
-	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F)	$<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
 .F90.o:
 	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_free_F90) $<
 .f.o:
-	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_fixed_f)  $<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_fixed_f) $<
 .f90.o:
-	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_free_f90)	$<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_free_f90) $<
