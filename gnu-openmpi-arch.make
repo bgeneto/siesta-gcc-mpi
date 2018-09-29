@@ -17,9 +17,9 @@
 
 SIESTA_ARCH = x86_64_MPI
 
-CC = mpicc
+CC = /usr/bin/mpicc
 FPP = $(FC) -E -P -x c
-FC = mpif90
+FC = /usr/bin/mpif90
 FC_SERIAL = gfortran
 
 # MPI setup
