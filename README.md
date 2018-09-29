@@ -1,4 +1,4 @@
-# 0. Purpose 
+## 0. Purpose 
 
 This document contains step-by-step instructions to proceed with a successfull installation of the SIESTA (Spanish Initiative for Electronic Simulations with Thousands of Atoms) software on Linux (tested with Ubuntu 18.04) using the GCC and OpenMPI tools. 
 
@@ -31,21 +31,21 @@ First let's `make` runs in parallel by default to speed-up things a little...
 alias make='make -j'
 ```
 
-### 3.1 Install single-threaded openblas library from source
+#### 3.1 Install single-threaded openblas library from source
 
 *Note: apt installs a threaded version of openblas by default, I think this is not suitable for this MPI build of siesta.*
 
 ```
-cd /opt/openblas
+cd $OPENBLAS_DIR
 wget -O OpenBLAS.tar.gz https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/OpenBLAS%200.3.3%20version.tar.gz
 tar xzf OpenBLAS.tar.gz && rm OpenBLAS.tar.gz
 cd "$(find . -name xianyi-OpenBLAS*)"
 make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 \
   NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0
-make PREFIX=/opt/openblas install  
+make PREFIX=$OPENBLAS_DIR install  
 ```
 
-### 3.2 Install scalapack from source
+#### 3.2 Install scalapack from source
 
 ```
 cd $SCALAPACK_DIR
@@ -63,7 +63,7 @@ wget https://launchpad.net/siesta/4.1/4.1-b3/+download/siesta-4.1-b3.tar.gz
 tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
 ```
 
-### 4.1 Install siesta library dependencies from source
+#### 4.1 Install siesta library dependencies from source
 
 ```
 cd ./siesta-4.1-b3/Docs
@@ -81,7 +81,7 @@ wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/ar
 (./install_netcdf4.bash 2>&1) | tee install_netcdf4.log
 ```
 
-### 4.2 Create your custom 'arch.make' file for GCC + MPI build 
+#### 4.2 Create your custom 'arch.make' file for GCC + MPI build 
 
 First create a custom target arch directory:
 
@@ -90,7 +90,7 @@ mkdir $SIESTA_DIR/siesta-4.1-b3/ObjMPI && cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
 wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta4.1-gnu-openmpi/master/gnu-openmpi-arch.make
 ```
 
-### 4.3 Build siesta executable 
+#### 4.3 Build siesta executable 
 
 ```
 cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
