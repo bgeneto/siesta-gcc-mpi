@@ -51,9 +51,14 @@ make PREFIX=$OPENBLAS_DIR install
 cd $SCALAPACK_DIR
 wget http://www.netlib.org/scalapack/scalapack_installer.tgz
 tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
-./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas.so --lapacklib=$OPENBLAS_DIR/lib/libopenblas.so \
-  --mpibindir=/usr/bin --mpicc=/usr/bin/mpicc --mpif90=/usr/bin/mpif90 --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include
+./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas.so \
+  --lapacklib=$OPENBLAS_DIR/lib/libopenblas.so --mpibindir=/usr/bin \
+  --mpicc=/usr/bin/mpicc --mpif90=/usr/bin/mpif90 \
+  --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include
 ```
+
+*Note: Answer 'b' if asked: 'Which BLAS library do you want to use ?'*
+
 
 ## 4. Install siesta from source
 
