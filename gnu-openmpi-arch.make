@@ -40,8 +40,8 @@ KINDS = $(SP_KIND) $(DP_KIND)
 LDFLAGS =
 INCFLAGS=
 
-# commented: we are using our own openblas implementation of lapack
-#COMP_LIBS = libsiestaLAPACK.a libsiestaBLAS.a
+# cleared: we are using our own openblas implementation of lapack
+#COMP_LIBS =
 
 FPPFLAGS = $(DEFS_PREFIX)-DFC_HAVE_ABORT
 # MPI requirement:
