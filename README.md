@@ -6,7 +6,7 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 
 ## 1. Install prerequisite software
 
-*Note: We assume you are running the commands below as an ordinary user (non-root) so we use `sudo` only when required.*
+*Note: We assume you are running all the commands below as an ordinary user (non-root), so we use `sudo` when required. That's because `mpirun` does NOT like to be executed as root.*
 
 ```
 sudo apt install make g++ gfortran openmpi-common openmpi-bin \
@@ -16,9 +16,9 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
 ## 2. Create required installation folders
 
 ```
-SIESTA_DIR=$HOME/siesta
-OPENBLAS_DIR=$HOME/openblas
-SCALAPACK_DIR=$HOME/scalapack 
+SIESTA_DIR=/opt/siesta
+OPENBLAS_DIR=/opt/openblas
+SCALAPACK_DIR=/opt/scalapack 
 
 mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
@@ -117,16 +117,3 @@ We should see the following message:
 ===> SIESTA finished successfully
 ```
 
-## 6. Making siesta available system-wide
-
-If you want to make siesta available to all users you can move the required directories to another location, e.g. `$HOME`:
-
-```
-sudo mv -t $HOME $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR 
-```
-
-Then every user should create a symbolic link to the siesta executable in order to run the scripts:
-
-```
-ln -s $SIESTA_DIR/siesta-4.1-b3/Obj/siesta
-```
