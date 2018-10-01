@@ -6,23 +6,21 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 
 ## 1. Install prerequisite software
 
+*Note: We assume you are running the commands below as `root` or doing something like that: `sudo su`.*
+
 ```
-sudo apt install make g++ gfortran openmpi-common openmpi-bin \
+apt install make g++ gfortran openmpi-common openmpi-bin \
   libopenmpi-dev libblacs-mpi-dev libreadline-dev m4 -y
 ```
 
 ## 2. Create required installation folders
-
-*Note: In what follows, we assume that your user has write permission to the following install directories (that's why we use chown/chmod below). Additionally, your user must be in the sudoers file.*
 
 ```
 SIESTA_DIR=/opt/siesta
 OPENBLAS_DIR=/opt/openblas
 SCALAPACK_DIR=/opt/scalapack 
 
-sudo mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-sudo chown -R root:sudo $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-sudo chmod -R 775 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
 
 ## 3. Install prerequisite libraries 
@@ -107,17 +105,18 @@ make OBJDIR=ObjMPI
 Just in case...
 
 ```
-sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-sudo find $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
+chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+find $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
 ```
 
 ## 6. Test siesta
 
-Let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
+`exit` sudo, i.e., return to your normal user. 
+Now let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
 
 ```
 mkdir $HOME/siesta
-cp -r $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests
+sudo cp -rp $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests
 ```
 
 Now create a symbolic link to siesta executable 
