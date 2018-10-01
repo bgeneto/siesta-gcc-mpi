@@ -6,10 +6,10 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 
 ## 1. Install prerequisite software
 
-*Note: We assume you are running the commands below as `root` or doing something like `sudo su`.*
+*Note: We assume you are running the commands below as an ordinary user (non-root) so we use `sudo` only when required.*
 
 ```
-apt install make g++ gfortran openmpi-common openmpi-bin \
+sudo apt install make g++ gfortran openmpi-common openmpi-bin \
   libopenmpi-dev libblacs-mpi-dev libreadline-dev m4 -y
 ```
 
@@ -65,15 +65,18 @@ tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
 
 #### 4.1. Install siesta library dependencies from source
 
+Install the fortran-lua-hook library (flook) is **optional** (but fast and easy):
+
 ```
 cd ./siesta-4.1-b3/Docs
 wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.0/flook-0.7.0.tar.gz
 (./install_flook.bash 2>&1) | tee install_flook.log
 ```
 
-Install netcdf dependency (be patient):
+Install netcdf dependency is required (and slow, be patient):
 
 ```
+cd ./siesta-4.1-b3/Docs
 wget https://zlib.net/zlib-1.2.11.tar.gz
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.bz2
 wget -O netcdf-c-4.4.1.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.4.1.1.tar.gz
@@ -100,33 +103,9 @@ sh ../Src/obj_setup.sh
 make OBJDIR=ObjMPI
 ```
 
-## 5. Revert to default directory ownership and permission 
+## 5. Test siesta
 
-Just in case...
-
-```
-chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-find $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR \( -type d -exec chmod 755 {} \; -o -type f -exec chmod 755 {} \; \)
-```
-
-## 6. Test siesta
-
-`exit` sudo, i.e., return to your normal user. 
-Now let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
-
-```
-mkdir $HOME/siesta
-sudo cp -rp $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests
-```
-
-Now create a symbolic link to siesta executable 
-
-```
-cd $HOME/siesta
-ln -s $SIESTA_DIR/siesta-4.1-b3/ObjMPI/siesta
-```
-
-Finally run some test job:
+Choose some random test job to run, e.g.:
 
 ```
 cd $HOME/siesta/Tests/h2o_dos/
@@ -136,4 +115,12 @@ make
 We should see the following message:
 ```
 ===> SIESTA finished successfully
+```
+
+## 6. Making siesta available system-wide
+
+If you want to make siesta available to all users you can move the required directories to another location, e.g. `/opt`:
+
+```
+sudo mv -t /opt $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR 
 ```
