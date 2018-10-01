@@ -16,9 +16,9 @@ sudo apt install make g++ gfortran openmpi-common openmpi-bin \
 ## 2. Create required installation folders
 
 ```
-SIESTA_DIR=/opt/siesta
-OPENBLAS_DIR=/opt/openblas
-SCALAPACK_DIR=/opt/scalapack 
+SIESTA_DIR=$HOME/siesta
+OPENBLAS_DIR=$HOME/openblas
+SCALAPACK_DIR=$HOME/scalapack 
 
 mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
@@ -119,10 +119,10 @@ We should see the following message:
 
 ## 6. Making siesta available system-wide
 
-If you want to make siesta available to all users you can move the required directories to another location, e.g. `/opt`:
+If you want to make siesta available to all users you can move the required directories to another location, e.g. `$HOME`:
 
 ```
-sudo mv -t /opt $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR 
+sudo mv -t $HOME $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR 
 ```
 
 Then every user should create a symbolic link to the siesta executable in order to run the scripts:
