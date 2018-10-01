@@ -17,6 +17,8 @@
 
 SIESTA_ARCH = x86_64_MPI
 
+INSDIR = /opt
+
 CC = mpicc
 FPP = $(FC) -E -P -x c
 FC = mpif90
@@ -50,26 +52,26 @@ FPPFLAGS += -DMPI
 LIBS =
 
 # flook
-INCFLAGS += -I$(HOME)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/include
-LDFLAGS += -L$(HOME)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib -Wl,-rpath=$(HOME)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib
+INCFLAGS += -I$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/include
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/lib
 LIBS += -lflookall -ldl
 COMP_LIBS += libfdict.a
 FPPFLAGS += -DSIESTA__FLOOK
 
 # netcdf
-INCFLAGS += -I$(HOME)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/include
-LDFLAGS += -L$(HOME)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib -Wl,-rpath=$(HOME)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib
-LDFLAGS += -L$(HOME)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib -Wl,-rpath=$(HOME)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib
-LDFLAGS += -L$(HOME)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib -Wl,-rpath=$(HOME)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib
+INCFLAGS += -I$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/include
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib
 LIBS += -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz
 COMP_LIBS += libncdf.a libfdict.a
 FPPFLAGS += -DCDF -DNCDF -DNCDF_4
 
 # openblas
-LIBS += -L$(HOME)/openblas/lib -lopenblas
+LIBS += -L$(INSDIR)/openblas/lib -lopenblas
 
 # ScaLAPACK (required only for MPI build)
-LIBS += -L$(HOME)/scalapack/lib -lscalapack
+LIBS += -L$(INSDIR)/scalapack/lib -lscalapack
 
 # Dependency rules ---------
 
