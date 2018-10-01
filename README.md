@@ -108,7 +108,7 @@ make OBJDIR=Obj
 Choose some random test job to run, e.g.:
 
 ```
-cd $HOME/siesta/Tests/h2o_dos/
+cd $SIESTA_DIR/siesta-4.1-b3/Tests/h2o_dos/
 make
 ```
 
