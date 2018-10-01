@@ -20,7 +20,8 @@ SIESTA_DIR=/opt/siesta
 OPENBLAS_DIR=/opt/openblas
 SCALAPACK_DIR=/opt/scalapack 
 
-mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo chmod -R 777 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
 
 ## 3. Install prerequisite libraries 
@@ -103,12 +104,35 @@ sh ../Src/obj_setup.sh
 make OBJDIR=Obj
 ```
 
-## 5. Test siesta
+## 5. Revert to default permissions and ownership 
 
-Choose some random test job to run, e.g.:
+Just in case...
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b3/Tests/h2o_dos/
+sudo chown -R root:root $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+```
+
+## 6. Test siesta
+
+Let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
+
+```
+mkdir $HOME/siesta/
+sudo cp -rp $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests/
+```
+
+Now create a symbolic link to siesta executable 
+
+```
+cd $HOME/siesta
+ln -s $SIESTA_DIR/siesta-4.1-b3/ObjIntel/siesta
+```
+
+Finally run some test job:
+
+```
+cd $HOME/siesta/Tests/h2o_dos/
 make
 ```
 
