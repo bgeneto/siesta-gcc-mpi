@@ -91,16 +91,16 @@ If anything goes wrong in this step you can check the `install_netcdf4.log` log 
 First create a custom target arch directory:
 
 ```
-mkdir $SIESTA_DIR/siesta-4.1-b3/ObjMPI && cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
+cd $SIESTA_DIR/siesta-4.1-b3/Obj
 wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta4.1-gnu-openmpi/master/gnu-openmpi-arch.make
 ```
 
 #### 4.3. Build siesta executable 
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b3/ObjMPI
+cd $SIESTA_DIR/siesta-4.1-b3/Obj
 sh ../Src/obj_setup.sh
-make OBJDIR=ObjMPI
+make OBJDIR=Obj
 ```
 
 ## 5. Test siesta
@@ -123,4 +123,10 @@ If you want to make siesta available to all users you can move the required dire
 
 ```
 sudo mv -t /opt $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR 
+```
+
+Then every user should create a symbolic link to the siesta executable in order to run the scripts:
+
+```
+ln -s $SIESTA_DIR/siesta-4.1-b3/Obj/siesta
 ```
