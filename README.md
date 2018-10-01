@@ -21,6 +21,7 @@ OPENBLAS_DIR=/opt/openblas
 SCALAPACK_DIR=/opt/scalapack 
 
 sudo mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+# temporally loose permissions (we will revert later)
 sudo chmod -R 777 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 ```
 
@@ -66,7 +67,7 @@ tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
 
 #### 4.1. Install siesta library dependencies from source
 
-Install the fortran-lua-hook library (flook) is **optional** (but fast and easy):
+Install the fortran-lua-hook library (flook):
 
 ```
 cd $SIESTA_DIR/siesta-4.1-b3/Docs
@@ -74,7 +75,7 @@ wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.
 (./install_flook.bash 2>&1) | tee install_flook.log
 ```
 
-Install netcdf dependency is required (and slow, be patient):
+Install netcdf dependency (required and slow, grab a coffee):
 
 ```
 cd $SIESTA_DIR/siesta-4.1-b3/Docs
