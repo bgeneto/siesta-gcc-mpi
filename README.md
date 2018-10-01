@@ -6,7 +6,7 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 
 ## 1. Install prerequisite software
 
-*Note: We assume you are running the commands below as `root` or doing something like that: `sudo su`.*
+*Note: We assume you are running the commands below as `root` or doing something like `sudo su`.*
 
 ```
 apt install make g++ gfortran openmpi-common openmpi-bin \
