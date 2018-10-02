@@ -49,8 +49,8 @@ make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install
 cd $SCALAPACK_DIR
 wget http://www.netlib.org/scalapack/scalapack_installer.tgz
 tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
-./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas.a \
-  --lapacklib=$OPENBLAS_DIR/lib/libopenblas.a --mpibindir=/usr/bin \
+./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a \
+  --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin \
   --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include
 ```
 
