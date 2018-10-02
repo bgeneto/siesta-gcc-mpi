@@ -39,8 +39,8 @@ wget -O OpenBLAS.tar.gz https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/
 tar xzf OpenBLAS.tar.gz && rm OpenBLAS.tar.gz
 cd "$(find . -name xianyi-OpenBLAS*)"
 make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 \
-  NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=non-threaded
-make PREFIX=$OPENBLAS_DIR install  
+  NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=nonthreaded
+make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install
 ```
 
 #### 3.2. Install scalapack from source
