@@ -68,7 +68,7 @@ COMP_LIBS += libncdf.a libfdict.a
 FPPFLAGS += -DCDF -DNCDF -DNCDF_4
 
 # openblas
-LIBS += -L$(INSDIR)/openblas/lib -lopenblas
+LIBS += -L$(INSDIR)/openblas/lib -lopenblas_nonthreaded
 
 # ScaLAPACK (required only for MPI build)
 LIBS += -L$(INSDIR)/scalapack/lib -lscalapack
