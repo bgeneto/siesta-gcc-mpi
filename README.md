@@ -10,7 +10,7 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 
 ```
 sudo apt install make g++ gfortran openmpi-common openmpi-bin \
-  libopenmpi-dev libblacs-mpi-dev libreadline-dev m4 -y
+  libopenmpi-dev libblacs-mpi-dev libreadline-dev m4 xsltproc -y
 ```
 
 ## 2. Create required installation folders
@@ -140,3 +140,6 @@ We should see the following message:
 ===> SIESTA finished successfully
 ```
 
+## 7. Learning to use siesta 
+
+Read the [manual](https://siesta-project.github.io/bsc2017/siesta-4.1.pdf).
