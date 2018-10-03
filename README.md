@@ -9,8 +9,19 @@ To achieve a parallel build of SIESTA you should ﬁrst determine which type of 
 *Note: We assume you are running all the commands below as an ordinary user (non-root), so we use `sudo` when required. That's because `mpirun` does NOT like to be executed as root.*
 
 ```
-sudo apt install make g++ gfortran openmpi-common openmpi-bin \
-  libopenmpi-dev libblacs-mpi-dev libreadline-dev m4 xsltproc -y
+sudo apt install build-essential g++ gfortran libreadline-dev m4 xsltproc -y
+```
+
+Now install OpenMPI or MPICH software and libraries: 
+
+```
+sudo apt install openmpi-common openmpi-bin libopenmpi-dev -y
+```
+
+**OR**, if you prefer, install mpich implementation of MPI: 
+
+```
+sudo apt install mpich libcr-dev -y
 ```
 
 ## 2. Create required installation folders
