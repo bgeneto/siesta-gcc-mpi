@@ -41,15 +41,13 @@ KINDS = $(SP_KIND) $(DP_KIND)
 
 LDFLAGS =
 INCFLAGS=
-
-# cleared: we are using our own openblas implementation of lapack
-#COMP_LIBS =
+COMP_LIBS =
+LIBS =
 
 FPPFLAGS = $(DEFS_PREFIX)-DFC_HAVE_ABORT
+
 # MPI requirement:
 FPPFLAGS += -DMPI
-
-LIBS =
 
 # flook
 INCFLAGS += -I$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/flook/0.7.0/include
@@ -68,10 +66,12 @@ COMP_LIBS += libncdf.a libfdict.a
 FPPFLAGS += -DCDF -DNCDF -DNCDF_4
 
 # openblas
-LIBS += -L$(INSDIR)/openblas/lib -lopenblas_nonthreaded
+LDFLAGS += -L$(INSDIR)/openblas/lib -Wl,-rpath=$(INSDIR)/openblas/lib
+LIBS += -lopenblas_nonthreaded
 
 # ScaLAPACK (required only for MPI build)
-LIBS += -L$(INSDIR)/scalapack/lib -lscalapack
+LDFLAGS += -L$(INSDIR)/scalapack/lib -Wl,-rpath=$(INSDIR)/scalapack/lib
+LIBS += -lscalapack
 
 # Dependency rules ---------
 
