@@ -129,21 +129,21 @@ sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 Let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
 
 ```
-mkdir $HOME/siesta
-rsync -a $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/Tests/
+mkdir -p $HOME/siesta/siesta-4.1-b3
+rsync -a $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/siesta-4.1-b3/Tests/
 ```
 
 Now create a symbolic link to siesta executable 
 
 ```
-cd $HOME/siesta
-ln -s $SIESTA_DIR/siesta-4.1-b3/ObjIntel/siesta
+cd $HOME/siesta/siesta-4.1-b3
+ln -s $SIESTA_DIR/siesta-4.1-b3/Obj/siesta
 ```
 
 Finally run some test job:
 
 ```
-cd $HOME/siesta/Tests/h2o_dos/
+cd $HOME/siesta/siesta-4.1-b3/Tests/h2o_dos/
 make
 ```
 
