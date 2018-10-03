@@ -28,7 +28,7 @@ FC_SERIAL = gfortran
 MPI_INTERFACE = libmpi_f90.a
 MPI_INCLUDE = .
 
-FFLAGS = -O2 -fPIC -ftree-vectorize
+FFLAGS = -O3 -fPIC -ftree-vectorize -march=native
 
 AR = ar
 RANLIB = ranlib
