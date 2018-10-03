@@ -57,12 +57,13 @@ make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install
 #### 3.2. Install scalapack from source
 
 ```
+mpiincdir="/usr/lib/x86_64-linux-gnu/openmpi/include"
+if [ ! -d "$mpiincdir" ]; then mpiincdir="/usr/include/mpich" ; fi
 cd $SCALAPACK_DIR
 wget http://www.netlib.org/scalapack/scalapack_installer.tgz
 tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
 ./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a \
-  --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin \
-  --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include
+  --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=$mpiincdir
 ```
 
 *Note: Answer 'b' if asked: 'Which BLAS library do you want to use ?'*
