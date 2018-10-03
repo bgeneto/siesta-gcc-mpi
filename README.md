@@ -100,11 +100,11 @@ wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/ar
 
 If anything goes wrong in this step you can check the `install_netcdf4.log` log file.
 
-#### 4.2. Download our custom 'arch.make' file for GCC + OpenMPI build 
+#### 4.2. Download our custom 'arch.make' file for GCC + OpenMPI/MPICH build 
 
 ```
 cd $SIESTA_DIR/siesta-4.1-b3/Obj
-wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta-gcc-openmpi/master/gnu-openmpi-arch.make
+wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta-gcc-mpi/master/gcc-mpi-arch.make
 ```
 
 #### 4.3. Build siesta executable 
