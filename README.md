@@ -24,6 +24,8 @@ sudo apt install openmpi-common openmpi-bin libopenmpi-dev -y
 sudo apt install mpich libcr-dev -y
 ```
 
+Do NOT install both packages (OpenMPI and MPICH). 
+
 ## 2. Create required installation folders
 
 ```
