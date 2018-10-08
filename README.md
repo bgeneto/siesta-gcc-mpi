@@ -60,8 +60,8 @@ cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xiany
 #### 3.2. Install scalapack from source
 
 ```
-mpiincdir="/usr/lib/x86_64-linux-gnu/openmpi/include"
-if [ ! -d "$mpiincdir" ]; then mpiincdir="/usr/include/mpich" ; fi
+mpiincdir="/usr/include/mpich"
+if [ ! -d "$mpiincdir" ]; then mpiincdir="/usr/lib/x86_64-linux-gnu/openmpi/include" ; fi
 cd $SCALAPACK_DIR
 wget http://www.netlib.org/scalapack/scalapack_installer.tgz
 tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
