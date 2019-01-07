@@ -155,6 +155,23 @@ We should see the following message:
 ===> SIESTA finished successfully
 ```
 
-## 7. Learning to use siesta 
+## 7. Create a symbolic link for every user
+
+
+```
+for USER in $(ls /home)
+do
+    if [ "$USER" == "lost+found" ]
+    then
+        continue
+    else
+        sudo -u $USER mkdir /home/$USER/bin
+        sudo -u $USER ln -s $SIESTA_DIR/siesta-4.1-b3/Obj/siesta /home/$USER/bin/siesta
+    fi
+done
+```
+
+
+## 8. Learning to use siesta 
 
 Read the [manual](https://siesta-project.github.io/bsc2017/siesta-4.1.pdf).
