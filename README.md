@@ -159,6 +159,7 @@ We should see the following message:
 
 
 ```
+SIESTA_DIR=/opt/siesta
 for USER in $(ls /home)
 do
     if [ "$USER" == "lost+found" ]
