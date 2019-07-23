@@ -166,7 +166,7 @@ do
         continue
     else
         sudo -u $USER mkdir /home/$USER/bin
-        sudo -u $USER ln -s $SIESTA_DIR/siesta-4.1-b4/Obj/siesta /home/$USER/bin/siesta
+        sudo -u $USER ln -sf $SIESTA_DIR/siesta-4.1-b4/Obj/siesta /home/$USER/bin/siesta
     fi
 done
 ```
