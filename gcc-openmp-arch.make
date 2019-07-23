@@ -43,10 +43,10 @@ LIBS =
 FPPFLAGS = $(DEFS_PREFIX)-DFC_HAVE_ABORT
 
 # netcdf
-INCFLAGS += -I$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/include
-LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/zlib/1.2.11/lib
-LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/hdf5/1.8.18/lib
-LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b3/Docs/build/netcdf/4.4.1.1/lib
+INCFLAGS += -I$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/netcdf/4.6.1/include
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/zlib/1.2.11/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/zlib/1.2.11/lib
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/hdf5/1.8.21/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/hdf5/1.8.21/lib
+LDFLAGS += -L$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/netcdf/4.6.1/lib -Wl,-rpath=$(INSDIR)/siesta/siesta-4.1-b4/Docs/build/netcdf/4.6.1/lib
 LIBS += -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz
 COMP_LIBS += libncdf.a libfdict.a
 FPPFLAGS += -DCDF -DNCDF -DNCDF_4
