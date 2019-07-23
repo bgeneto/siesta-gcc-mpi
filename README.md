@@ -95,8 +95,8 @@ Install netcdf dependency (required and slow, grab a coffee):
 ```
 cd $SIESTA_DIR/siesta-4.1-b4/Docs
 wget https://zlib.net/zlib-1.2.11.tar.gz
-wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.18/src/hdf5-1.8.18.tar.bz2
-wget -O netcdf-c-4.4.1.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.4.1.1.tar.gz
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.bz2
+wget -O netcdf-c-4.6.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
 wget -O netcdf-fortran-4.4.4.tar.gz https://github.com/Unidata/netcdf-fortran/archive/v4.4.4.tar.gz
 (./install_netcdf4.bash 2>&1) | tee install_netcdf4.log
 ```
