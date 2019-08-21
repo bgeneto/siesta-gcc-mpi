@@ -76,8 +76,8 @@ tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
 
 ```
 cd $SIESTA_DIR
-wget https://launchpad.net/siesta/4.1/4.1-b4/+download/siesta-4.1-b4.tar.gz
-tar xzf ./siesta-4.1-b4.tar.gz && rm ./siesta-4.1-b4.tar.gz
+wget https://launchpad.net/siesta/4.1/4.1-b3/+download/siesta-4.1-b3.tar.gz
+tar xzf ./siesta-4.1-b3.tar.gz && rm ./siesta-4.1-b3.tar.gz
 ```
 
 #### 4.1. Install siesta library dependencies from source
@@ -85,7 +85,7 @@ tar xzf ./siesta-4.1-b4.tar.gz && rm ./siesta-4.1-b4.tar.gz
 Install the fortran-lua-hook library (flook):
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b4/Docs
+cd $SIESTA_DIR/siesta-4.1-b3/Docs
 wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.0/flook-0.7.0.tar.gz
 (./install_flook.bash 2>&1) | tee install_flook.log
 ```
@@ -93,7 +93,7 @@ wget https://github.com/ElectronicStructureLibrary/flook/releases/download/v0.7.
 Install netcdf dependency (required and slow, grab a coffee):
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b4/Docs
+cd $SIESTA_DIR/siesta-4.1-b3/Docs
 wget https://zlib.net/zlib-1.2.11.tar.gz
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.bz2
 wget -O netcdf-c-4.6.1.tar.gz https://github.com/Unidata/netcdf-c/archive/v4.6.1.tar.gz
@@ -106,14 +106,14 @@ If anything goes wrong in this step you can check the `install_netcdf4.log` log 
 #### 4.2. Download our custom 'arch.make' file for GCC + OpenMPI/MPICH build 
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b4/Obj
+cd $SIESTA_DIR/siesta-4.1-b3/Obj
 wget -O arch.make https://raw.githubusercontent.com/bgeneto/siesta-gcc-mpi/master/gcc-mpi-arch.make
 ```
 
 #### 4.3. Build siesta executable 
 
 ```
-cd $SIESTA_DIR/siesta-4.1-b4/Obj
+cd $SIESTA_DIR/siesta-4.1-b3/Obj
 sh ../Src/obj_setup.sh
 make OBJDIR=Obj
 ```
@@ -132,21 +132,21 @@ sudo chmod -R 755 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 Let's copy siesta `Test` directory to our home (where we have all necessary permissions): 
 
 ```
-mkdir -p $HOME/siesta/siesta-4.1-b4
-rsync -a $SIESTA_DIR/siesta-4.1-b4/Tests/ $HOME/siesta/siesta-4.1-b4/Tests/
+mkdir -p $HOME/siesta/siesta-4.1-b3
+rsync -a $SIESTA_DIR/siesta-4.1-b3/Tests/ $HOME/siesta/siesta-4.1-b3/Tests/
 ```
 
 Now create a symbolic link to siesta executable 
 
 ```
-cd $HOME/siesta/siesta-4.1-b4
-ln -s $SIESTA_DIR/siesta-4.1-b4/Obj/siesta
+cd $HOME/siesta/siesta-4.1-b3
+ln -s $SIESTA_DIR/siesta-4.1-b3/Obj/siesta
 ```
 
 Finally run some test job:
 
 ```
-cd $HOME/siesta/siesta-4.1-b4/Tests/h2o_dos/
+cd $HOME/siesta/siesta-4.1-b3/Tests/h2o_dos/
 make
 ```
 
@@ -167,7 +167,7 @@ do
         continue
     else
         sudo -u $USER mkdir /home/$USER/bin
-        sudo -u $USER ln -sf $SIESTA_DIR/siesta-4.1-b4/Obj/siesta /home/$USER/bin/siesta
+        sudo -u $USER ln -sf $SIESTA_DIR/siesta-4.1-b3/Obj/siesta /home/$USER/bin/siesta
     fi
 done
 ```
