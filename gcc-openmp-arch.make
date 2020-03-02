@@ -70,14 +70,14 @@ FFLAGS_DEBUG = -g -O1
 # will make an erroneous compilation of atom.f with high optimization
 # levels.
 atom.o: atom.F
-        $(FC) -c $(FFLAGS_DEBUG) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
+	$(FC) -c $(FFLAGS_DEBUG) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
 .c.o:
-        $(CC) -c $(CFLAGS) $(INCFLAGS) $(CPPFLAGS) $<
+	$(CC) -c $(CFLAGS) $(INCFLAGS) $(CPPFLAGS) $<
 .F.o:
-        $(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_fixed_F) $<
 .F90.o:
-        $(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_free_F90) $<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FPPFLAGS) $(FPPFLAGS_free_F90) $<
 .f.o:
-        $(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_fixed_f) $<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_fixed_f) $<
 .f90.o:
-        $(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_free_f90) $<
+	$(FC) -c $(FFLAGS) $(INCFLAGS) $(FCFLAGS_free_f90) $<
