@@ -63,8 +63,11 @@ cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xiany
 mpiincdir="/usr/include/mpich"
 if [ ! -d "$mpiincdir" ]; then mpiincdir="/usr/lib/x86_64-linux-gnu/openmpi/include" ; fi
 cd $SCALAPACK_DIR
-wget http://www.netlib.org/scalapack/scalapack_installer.tgz
-tar xzf ./scalapack_installer.tgz && cd ./scalapack_installer
+wget http://www.netlib.org/scalapack/scalapack_installer.tgz -O ./scalapack_installer.tgz
+tar xf ./scalapack_installer.tgz
+mkdir -p $SCALAPACK_DIR/scalapack_installer/build/download/
+wget https://github.com/Reference-ScaLAPACK/scalapack/archive/v2.1.0.tar.gz -O $SCALAPACK_DIR/scalapack_installer/build/download/scalapack.tgz
+cd ./scalapack_installer
 ./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a \
   --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=$mpiincdir
 ```
