@@ -59,7 +59,9 @@ LAPACK_LIBS=-lopenblas_nonthreaded
 FC_PARALLEL=mpif90
 FC_SERIAL=gfortran
 FPP = $(FC_SERIAL) -E -P -x c
-FFLAGS = -O2 -fallow-argument-mismatch 
+FFLAGS = -O3
+#gfortran/gcc 10.x.x only:
+#FFLAGS = -O3 -fallow-argument-mismatch 
 FFLAGS_DEBUG= -g -O0
 RANLIB=echo
 
